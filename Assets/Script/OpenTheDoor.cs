@@ -6,17 +6,18 @@ public class OpenTheDoor : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     private bool player = false;
+    private bool isTrigger = true;
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (isTrigger && other.CompareTag("Player"))
         {
             Debug.Log("Нажмите на кнопку Е");
             player = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
@@ -29,6 +30,7 @@ public class OpenTheDoor : MonoBehaviour
         if (player && Input.GetKeyDown(KeyCode.E))
         {
             animator.SetTrigger("Open");
+            isTrigger = false;
         }
     }
 }
