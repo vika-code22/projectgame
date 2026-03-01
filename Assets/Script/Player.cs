@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 10f;// переменная не используется
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float mouseSensitivity = 2f;
 
@@ -41,6 +40,4 @@ public class Player : MonoBehaviour
 
         cameraTransform.localEulerAngles = new Vector3(cameraPitch, 0f, 0f);
     }
-
-    // при открывание двери, персонаж крутится
 }

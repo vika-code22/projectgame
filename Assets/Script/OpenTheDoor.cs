@@ -25,7 +25,7 @@ public class OpenTheDoor : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
