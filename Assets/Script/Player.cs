@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float mouseSensitivity = 2f;
 
+    [SerializeField] private Rigidbody rb;
+
     private float cameraPitch = 0f;
 
     private void FixedUpdate()
@@ -20,11 +22,12 @@ public class Player : MonoBehaviour
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
         Vector3 moveDirection = (transform.forward * moveVertical + transform.right * moveHorizontal).normalized;
 
         if (moveDirection.magnitude >= 0.1f)
         {
-            transform.position += moveDirection * moveSpeed * Time.deltaTime;
+            rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
         }
     }
 
