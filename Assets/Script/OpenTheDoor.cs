@@ -5,6 +5,7 @@ using UnityEngine;
 public class OpenTheDoor : MonoBehaviour
 {
     [SerializeField] private Animator animator;
+    [SerializeField] private UI ui;
     private bool player = false;
     private bool isTrigger = true;
 
@@ -12,7 +13,7 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (isTrigger && other.CompareTag("Player"))
         {
-            Debug.Log("Нажмите на кнопку Е");
+            ui.OnOffE(true);
             player = true;
         }
     }
@@ -21,6 +22,7 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            ui.OnOffE(false);
             player = false;
         }
     }
