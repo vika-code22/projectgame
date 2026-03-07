@@ -6,8 +6,21 @@ public class OpenTheDoor : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private UI ui;
+    [SerializeField] private BoxCollider bxKey;
+    [SerializeField] private GameObject key;
+    [SerializeField] private bool boolOpen;
     private bool player = false;
     private bool isTrigger = true;
+
+    private void Start()
+    {
+        if (!bxKey)
+        {
+            return;
+        }
+
+        bxKey.enabled = false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -22,7 +35,6 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ui.OnOffE(false);
             player = false;
         }
     }
@@ -31,8 +43,32 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
-            animator.SetTrigger("Open");
-            isTrigger = false;
+            if (key && boolOpen == false)
+            {
+                animator.SetTrigger("Open");
+                isTrigger = false;
+                ui.OnOffE(false);
+            }
+
+            if (boolOpen && key.activeSelf == false)
+            {
+                animator.SetTrigger("Open");
+                isTrigger = false;
+                ui.OnOffE(false);
+            }
+
+            //if (bxKey)
+            //{
+            //    bxKey.enabled = true;
+            //}
+
+            if (!bxKey)
+            {
+                return;
+            }
+
+            bxKey.enabled = true;
+
         }
     }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Vxod
   - Exit
   - Ground
+  - Key
   layers:
   - Default
   - TransparentFX
