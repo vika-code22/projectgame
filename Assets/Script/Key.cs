@@ -9,7 +9,7 @@ public class Key : MonoBehaviour
     private bool player = false;
     private bool isTrigger = true;
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (isTrigger && other.CompareTag("Player"))
         {

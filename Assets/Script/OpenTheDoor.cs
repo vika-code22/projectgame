@@ -22,7 +22,7 @@ public class OpenTheDoor : MonoBehaviour
         bxKey.enabled = false;
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (isTrigger && other.CompareTag("Player"))
         {
@@ -43,18 +43,18 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
-            if (key && boolOpen == false)
+            if (boolOpen)
             {
                 animator.SetTrigger("Open");
                 isTrigger = false;
                 ui.OnOffE(false);
             }
-
-            if (boolOpen && key.activeSelf == false)
+            else if (!boolOpen && key.activeSelf)
             {
                 animator.SetTrigger("Open");
                 isTrigger = false;
                 ui.OnOffE(false);
+                key.SetActive(false);
             }
 
             //if (bxKey)
