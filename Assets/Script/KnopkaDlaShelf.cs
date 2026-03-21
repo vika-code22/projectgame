@@ -2,22 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class KnopkaDlaShelf : MonoBehaviour
 {
+    [SerializeField] private Animator animator;
+    [SerializeField] private GameObject sledgehammer;
     [SerializeField] private UI ui;
-    [SerializeField] private GameObject gmK;
-    [SerializeField] private Duck duck;
-    [SerializeField] private DlaLittleDuck littleDuck;
     private bool player = false;
     private bool isTrigger = true;
-
-    private void Start()
-    {
-        if (!duck)
-        {
-            return;
-        }
-    }
+    private Collider sledgehammerCollider;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,22 +33,14 @@ public class Key : MonoBehaviour
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
-            if (duck)
-            {
-                duck.MetodColliderOn();
-            }
-
-            if (littleDuck)
-            {
-                littleDuck.MetodDlaLittleDuck();
-            }
-
-            gmK.SetActive(true);
-            ui.OnOffE(false);
-            Destroy(gameObject);
+            animator.SetTrigger("Shelf");
             isTrigger = false;
+            ui.OnOffE(false);
         }
-
     }
 
+    public void HammerCollider()
+    {
+        sledgehammerCollider.enabled = true;
+    }
 }

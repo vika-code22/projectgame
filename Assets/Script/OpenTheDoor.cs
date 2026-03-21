@@ -35,6 +35,7 @@ public class OpenTheDoor : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            ui.OnOffE(false);
             player = false;
         }
     }

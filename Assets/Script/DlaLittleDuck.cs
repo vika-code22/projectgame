@@ -25,10 +25,13 @@ public class DlaLittleDuck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isTrigger && other.CompareTag("Player"))
+        if (littleDuck.activeSelf)
         {
-            ui.OnOffE(true);
-            player = true;
+            if (isTrigger && other.CompareTag("Player"))
+            {
+                ui.OnOffE(true);
+                player = true;
+            }
         }
     }
 
@@ -44,7 +47,14 @@ public class DlaLittleDuck : MonoBehaviour
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
-            if (!boolLittleDuck && littleDuck.activeSelf)
+            if (boolLittleDuck)
+            {
+                isTrigger = false;
+                ui.OnOffE(false);
+                keyTwo.SetActive(false);
+            }
+
+            else if (!boolLittleDuck && littleDuck.activeSelf)
             {
                 isTrigger = false;
                 ui.OnOffE(false);
@@ -60,5 +70,10 @@ public class DlaLittleDuck : MonoBehaviour
 
             bxLittleDuck.enabled = true;
         }
+    }
+
+    public void MetodDlaLittleDuck()
+    {
+        bxLittleDuck.enabled = true;
     }
 }
