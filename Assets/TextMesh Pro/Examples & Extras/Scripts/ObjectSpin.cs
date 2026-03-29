@@ -33,7 +33,7 @@ namespace TMPro.Examples
             Light light = GetComponent<Light>();
             m_lightColor = light != null ? light.color : Color.black;
         }
-
+        
 
         // Update is called once per frame
         void Update()
