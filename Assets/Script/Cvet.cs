@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Cvet : MonoBehaviour
 {
-    [SerializeField] Light targetLight;
-    [SerializeField] float minRange = 1f;
-    [SerializeField] float maxRange = 50f;
-    [SerializeField] float speed = 0.5f;
+    [SerializeField] private Light targetLight;
+    [SerializeField] private float minRange = 1f;
+    [SerializeField] private float maxRange = 50f;
+    [SerializeField] private float speed = 0.5f;
 
     private void Update()
     {
@@ -18,5 +18,6 @@ public class Cvet : MonoBehaviour
 
         float pingPong = Mathf.PingPong(Time.time * speed, 1);
         targetLight.range = Mathf.Lerp(minRange, maxRange, pingPong);
+        
     }
 }

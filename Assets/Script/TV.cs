@@ -13,6 +13,8 @@ public class TV : MonoBehaviour
     [SerializeField] private bool boolTV;
     private bool player = false;
     private bool isTrigger = true;
+    private bool activeTv;
+    public bool ActiveTv => activeTv;
 
     private void Start()
     {
@@ -49,14 +51,8 @@ public class TV : MonoBehaviour
     {
         if (player && Input.GetKeyDown(KeyCode.E))
         {
-            if (boolTV)
-            {
-                isTrigger = false;
-                ui.OnOffE(false);
-                slomanTv.SetActive(false);
-                keyThree.SetActive(false);
-            }
-            else if (!boolTV && hammer.activeSelf)
+
+            if (!boolTV && hammer.activeSelf)
             {
                 isTrigger = false;
                 ui.OnOffE(false);
@@ -64,6 +60,7 @@ public class TV : MonoBehaviour
                 Tv.SetActive(false);
                 slomanTv.SetActive(true);
                 keyThree.SetActive(true);
+                activeTv = true;
             }
 
             if (!bxHammer)

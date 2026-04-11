@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class OpenTheDoor : MonoBehaviour
@@ -8,6 +9,7 @@ public class OpenTheDoor : MonoBehaviour
     [SerializeField] private UI ui;
     [SerializeField] private BoxCollider bxKey;
     [SerializeField] private GameObject key;
+    [SerializeField] private AudioSource audioOpen;
     [SerializeField] private bool boolOpen;
     private bool player = false;
     private bool isTrigger = true;
@@ -47,12 +49,14 @@ public class OpenTheDoor : MonoBehaviour
             if (boolOpen)
             {
                 animator.SetTrigger("Open");
+                audioOpen.Play();
                 isTrigger = false;
                 ui.OnOffE(false);
             }
             else if (!boolOpen && key.activeSelf)
             {
                 animator.SetTrigger("Open");
+                audioOpen.Play();
                 isTrigger = false;
                 ui.OnOffE(false);
                 key.SetActive(false);

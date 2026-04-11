@@ -7,10 +7,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private float mouseSensitivity = 2f;
+    [SerializeField] private AudioSource audioWalking;
 
     [SerializeField] private Rigidbody rb;
 
     private float cameraPitch = 0f;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            audioWalking.Play();
+        }
+    }
 
     private void FixedUpdate()
     {
