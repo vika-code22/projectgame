@@ -13,14 +13,6 @@ public class Player : MonoBehaviour
 
     private float cameraPitch = 0f;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Ground"))
-        {
-            audioWalking.Play();
-        }
-    }
-
     private void FixedUpdate()
     {
         HandleMovement();
@@ -37,6 +29,13 @@ public class Player : MonoBehaviour
         if (moveDirection.magnitude >= 0.1f)
         {
             rb.MovePosition(rb.position + moveDirection * moveSpeed * Time.fixedDeltaTime);
+
+            if (!audioWalking.isPlaying)
+                audioWalking.Play();
+        }
+        else
+        {
+            audioWalking.Pause();
         }
     }
 
